@@ -30,10 +30,6 @@
   </head>
 
   <body>
-    <div class="container">
-    </div>
-
-    <%= yield %>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -49,12 +45,16 @@
       </div>
     </div>
 
-    <footer>
-      <div class="container">
-        <%= link_to "about", about_path %> | <%= link_to "terms", terms_path %>
+    <div class="container">
+      <%= yield %>
 
-      </div>
-    </footer>
+      <footer>
+        <div class="container">
+          <%= link_to "about", about_path %> | <%= link_to "terms", terms_path %> | <%= link_to "faq", faq_path %>
+        </div>
+      </footer>
+    </div>
+
 
 
     <!-- Bootstrap core JavaScript
