@@ -52,12 +52,10 @@
         </div>
       </div>
     </div>
-  <div class="col-md-12">
-    <% quotes=['"Failure is not an option.  Everyone has to suceed." -Arnold Schwarzenegger', '"Your Time is limited, so don\'t waste it living someone elses life." -Steve Jobs', '"Better Ingredients, Better Pizza" -Papa John'] %>
-    <% quotes.each do |quote| %>
-    <blockquote>
-    <p><%= quote %></p>
-    </blockquote>
-    <% end %>
   </div>
 </div>
+
+
+<% @quotes.each do |quote| %>
+  <p><%= quote %></p>
+<% end %>
