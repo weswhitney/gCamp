@@ -1,54 +1,56 @@
-<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <h1>gCamp</h1>
+  <p>Your life, organized</p>
+</div>
 
-<!-- images -->
-  <div class="jumbotron">
-    <h1>gCamp</h1>
-    <p>Your life, organized</p>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag "three.jpg" %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Tasks</h3>
+      </div>
+      <div class="panel-body">
+        <p>Grouped by projects and lists.  Just the way you like'em</p>
+      </div>
+    </div>
   </div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-4"><img src="http://www.imcreator.com/wp-content/uploads/2013/10/wpid-Featured_Picture482-620x413.jpg">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Tasks</h3>
-        </div>
-        <div class="panel-body">
-          <p>Grouped by projects and lists.  Just the way you like'em</p>
-        </div>
+  <div class="col-md-4">
+    <%= image_tag "two.jpg" %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">"Documents"</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li>Upload</li>
+          <li>Comment</li>
+          <li>Revise</li>
+        </ul>
       </div>
     </div>
-    <div class="col-md-4"><img src="http://www.imcreator.com/wp-content/uploads/2013/10/wpid-Featured_Picture406-620x413.jpg">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">"Documents"</h3>
-        </div>
-        <div class="panel-body">
-          <ul>
-            <li>Upload</li>
-            <li>Comment</li>
-            <li>Revise</li>
-          </ul>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag "one.jpg" %>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Comments</h3>
       </div>
-    </div>
-    <div class="col-md-4"><img src="http://www.imcreator.com/wp-content/uploads/2013/11/wpid-Featured_Picture54-620x413.jpg">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Comments</h3>
-        </div>
-        <div class="panel-body">
-          <ul>
-          <li>Comment on tasks and documents</li>
-          <li>Get email notifications</li>
-          </ul>
-        </div>
+      <div class="panel-body">
+        <ul>
+        <li>Comment on tasks and documents</li>
+        <li>Get email notifications</li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
+
 <% @quotes.each do |quote| %>
-  <p><%= quote.text %></p>
-  <p><%= quote.author %></p>
-  <hr>
+  <blockquote>
+    <%= quote.text %>
+    <footer>
+      <%= quote.author %>
+    </footer>
+  </blockquote>
 <% end %>

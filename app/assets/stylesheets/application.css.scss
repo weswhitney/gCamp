@@ -16,3 +16,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+img {
+  max-width: 100%;
+}
+
+
+.panel-body {
+  min-height: 150px;
+}
