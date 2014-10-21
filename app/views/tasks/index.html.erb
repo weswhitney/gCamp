@@ -1,10 +1,10 @@
 <div class="page-header">
-  <h1>Tasks <small><button type="button" class="btn btn-info pull-right"><%= link_to 'Create Task', new_task_path %>
-</button></small></h1>
+  <h1>Tasks
+    <small>
+      <%= link_to 'Create Task', new_task_path, :class => "btn btn-info pull-right" %>
+    </small>
+  </h1>
 </div>
-
-
-
 
 <table class="table">
   <thead>
@@ -18,9 +18,9 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.description %></td>
-        <td><button type="button" class="btn btn-success pull-right"><%= link_to 'Show', task %></td>
-        <td><button type="button" class="btn btn-info pull-right"><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><button type="button" class="btn btn-warning pull-right"><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', task, :class => "btn btn-success pull-right" %></td>
+        <td><%= link_to 'Edit', edit_task_path(task), :class => "btn btn-info pull-right" %></td>
+        <td><%= link_to 'Destroy', task, :class => "btn btn-warning pull-right", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
