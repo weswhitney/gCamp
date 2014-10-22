@@ -3,16 +3,16 @@ class PagesController < ApplicationController
   def index
 
     quote1 = Quote.new
-    quote1.text = "foobar"
-    quote1.author = "jeff"
+    quote1.text = "Failure is not an option.  Everyone has to succeed"
+    quote1.author = "Arnold Schwarzenegger"
 
     quote2 = Quote.new
-    quote2.text = "baz"
-    quote2.author = "Steve"
+    quote2.text = "Your time is limited, so don't waste it living someone elses life."
+    quote2.author = "Steve Jobs"
 
     quote3 = Quote.new
-    quote3.text = "w00t"
-    quote3.author = "Lark"
+    quote3.text = "Better Ingredients, Better Pizza"
+    quote3.author = "Papa John"
 
     @quotes = [quote1, quote2, quote3]
   end
