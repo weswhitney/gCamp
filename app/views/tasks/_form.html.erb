@@ -18,16 +18,17 @@
       <br>
     </div>
     <div class="checkbox col-md-offset-2">
-        <label>
-          <input type="checkbox"> Complete
-        </label>
+      <label>
+        <%= f.check_box :complete %>
+        <%= f.label :complete %>
+      </label>
     </div>
   </div>
 
-<div class="form-group">
-  <div class="actions">
-    <%= f.submit class: 'btn btn-primary col-md-offset-2' %>
-  </div>
+  <div class="form-group">
+    <div class="actions">
+      <%= f.submit class: 'btn btn-primary col-md-offset-2' %>
+    </div>
   </div>
 
 <% end %>
