@@ -4,7 +4,10 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @task = Task.all
+    if params[:sort_by] == "complete"
+      @task = Task.where(:complete => "true")
+    end
   end
 
   # GET /tasks/1
