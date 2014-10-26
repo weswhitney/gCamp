@@ -5,10 +5,16 @@
   <% end %>
 
   <p>
-    <strong>
-      Description:
-    </strong>
-      <%= @task.description %>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </p>
+  <p>
+    <strong>Completed:</strong>
+    <%= @task.complete %>
+  </p>
+  <p>
+    <strong>Due Date:</strong>
+    <%= @task.updated_at %>
   </p>
 
   <%= link_to 'Edit', edit_task_path(@task) %> |
