@@ -22,17 +22,11 @@
   </thead>
 
   <tbody>
-    <% @task.each do |task| %>
+    <% @tasks.each do |task| %>
       <tr>
-        <td>
-          <%= task.description %>
-        </td>
-        <td>
-          <%= task.complete %>
-        </td>
-        <td>
-          <%= task.created_at %>
-        </td>
+        <td><%= task.description %></td>
+        <td><%= task.complete %></td>
+        <td><%= task.created_at %></td>
         <td>
           <div class="pull-right">
             <%= link_to 'Show', task, :class => "btn btn-success" %>
