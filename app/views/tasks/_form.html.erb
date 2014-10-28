@@ -1,40 +1,33 @@
-<%= form_for(@task, :html => {:class => "form-horizontal col-md-6"}) do |f| %>
-  <% if @task.errors.any? %>
-  <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
-    <div id="error_explanation">
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for@task do |f| %>
 
-  <form class="form-horizontal" role="form">
-    <div class="form-group">
-        <%= f.label :description, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :description, class: "form-control" %>
-      </div>
+  <div class="form-group row">
+      <%= f.label :description, class: "col-sm-2" %>
+    <div class="col-sm-4">
+      <%= f.text_field :description, class: 'form-control' %>
     </div>
-    <div class="form-group">
-        <%= f.label :due_date, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.date_field :updated_at, class: "form-control" %>
-      </div>
+  </div>
+  <div class="form-group row">
+      <%= f.label :due_date, class: "col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.date_field :due_date %>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <label>
-          <%= f.label :complete %>
-          <%= f.check_box :complete, class: "checkbox" %>
-        </label>
-      </div>
+  </div>
+  <% unless current_page?(new_task_path) %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <label>
+        <%= f.label :complete %>
+        <%= f.check_box :complete %>
+      </label>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-          <%= f.submit class: 'btn btn-primary' %>
-      </div>
-    </div>
-  </form>
+  </div>
 <% end %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>
+
+</form>
