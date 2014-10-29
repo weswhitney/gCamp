@@ -1,10 +1,4 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-
-  def set_user
-    @user = User.find(params[:id])
-  end
 
 
   def index
@@ -12,6 +6,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
   end
 
   def new
@@ -20,15 +19,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params.require(:user).permit(:first_name, :last_name, :email))
-      respond_to do |format|
-        if @user.save
-          format.html { redirect_to users_path, notice: 'User was successfully created.'}
-          format.json { render :show, status: :created, location: @user }
-        else
-          format.html { render :new }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-      end
+    @user.save
+    redirect_to users_path, notice: 'User was successfully created.'
+  end
 
+  def update
+    @user = User.find(params[:id])
+    user_params = params.require(:user).permit(:first_name, :last_name, :email)
+    @user.update(user_params)
+    redirect_to users_path, notice: 'User was successfully updated.'
   end
 end
