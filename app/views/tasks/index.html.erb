@@ -3,7 +3,7 @@
     <small>
       <div class="pull-right">
       <%= link_to "All", tasks_path %> |
-      <%= link_to "Complete", tasks_path(sort_by: "complete") %>
+      <%= link_to "Incomplete", tasks_path(sort_by: "incomplete") %>
       <%= link_to 'Create Task', new_task_path, :class => "btn btn-info" %>
       </div>
     </small>

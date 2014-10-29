@@ -5,8 +5,9 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.all
+    # if @task = Task.where(:complete => "false")
     if params[:sort_by] == "complete"
-      @task = Task.where(:complete => "true")
+      @task = Task.where(:complete => "false")
     end
   end
 
