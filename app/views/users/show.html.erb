@@ -11,9 +11,15 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @user.first_name %></td>
-      <td><%= @user.last_name %></td>
+      <dl class="dl-horizantal">
+        <dt>
+          <dd>
+      <td><%= mail_to @user.first_name %></td>
+      <td><%= mail_to @user.last_name %></td>
       <td><%= @user.email %></td>
+          </dd>
+          </dt>
+      </dl>
     </tr>
   </tbody>
 </table>

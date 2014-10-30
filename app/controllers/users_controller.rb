@@ -29,4 +29,10 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to users_path, notice: 'User was successfully updated.'
   end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path, notice: 'User was successfully deleted'
+  end
 end
