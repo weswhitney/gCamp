@@ -1,4 +1,10 @@
 
+<% if notice %>
+  <div class="alert alert-success text-center">
+    <%= notice %>
+  </div>
+<% end %>
+
 <div class="page-header">
   <h1>Users
     <small>
@@ -22,7 +28,7 @@
     <% @users.each do |user| %>
       <tr>
         <td>
-          <%= link_to user.first_name + ' ' + user.last_name, user_path(user) %>
+          <%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %>
         </td>
         <td><%= mail_to user.email %></td>
         <td>

@@ -4,8 +4,6 @@
   </div>
 <% end %>
 
-
-
 <table>
   <thead>
     <tr>
@@ -16,15 +14,11 @@
   </thead>
   <tbody>
     <tr>
-      <dl class="dl-horizantal">
-        <dt>
-          <dd>
-      <td><%= mail_to @user.first_name %></td>
-      <td><%= mail_to @user.last_name %></td>
-      <td><%= @user.email %></td>
-          </dd>
-          </dt>
-      </dl>
+      <div class="dl-horizantal">
+      <td><%= @user.first_name %></td>
+      <td><%= @user.last_name %></td>
+      <td><%= mail_to @user.email %></td>
+      </div>
     </tr>
   </tbody>
 </table>

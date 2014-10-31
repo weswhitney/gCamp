@@ -1,12 +1,10 @@
 class TasksController < ApplicationController
 
   def index
-    if params[:sort_by] == "all"
-      @tasks = Task.order(:all)
-    elsif params[:sort_by] == "incomplete"
-      @tasks = Task.where(:complete => "false")
+    if params[:complete]
+     @tasks = Task.order(params[:sort_by])
     else
-      @tasks = Task.all
+     @tasks = Task.order(params[:sort_by]).where(complete: false)
     end
   end
 
