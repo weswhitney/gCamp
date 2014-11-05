@@ -4,21 +4,20 @@
   </div>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <div class="dl-horizantal">
-      <td><%= @user.first_name %></td>
-      <td><%= @user.last_name %></td>
-      <td><%= mail_to @user.email %></td>
-      </div>
-    </tr>
-  </tbody>
-</table>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+<p>
+  <strong>Last name:</strong>
+  <%= @user.last_name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= mail_to @user.email %>
+</p>
+<br>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
