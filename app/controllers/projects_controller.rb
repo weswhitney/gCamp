@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params.require(:project).permit(:name))
     @project.save
-    redirect_to projects_path, notice: 'Project was successfully created.'
+    redirect_to project_path(@project), notice: 'Project was successfully created.'
   end
 
   def update

@@ -4,14 +4,14 @@
   </div>
 <% end %>
 
+<div class= "page-header">
+  <div class= "pull-right">
+    <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
+    <%= link_to 'Destroy', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+    <h2><%= @project.name %></h2>
+</div>
 
 
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
 <br>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
