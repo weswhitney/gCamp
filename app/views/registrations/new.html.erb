@@ -5,11 +5,11 @@
   <%= form_for @user, url: signup_path do |f| %>
 
     <% if @user.errors.present? %>
-        <% @user.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
         <div class="alert alert-danger">
         <%= message %>
         </div>
-        <% end %>
+      <% end %>
     <% end %>
     <div>
       <%= f.label :first_name %>
