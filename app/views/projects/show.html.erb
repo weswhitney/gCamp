@@ -6,17 +6,12 @@
 
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <dl class="dl-horizantal">
-      <td><%= @project.name %></td>
-      </dl>
-    </tr>
-  </tbody>
-</table>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+<br>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
