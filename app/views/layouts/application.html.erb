@@ -8,30 +8,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>gCamp</title>
 </head>
-<body>
-  <div class="navbar navbar-inverse" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <%= link_to "gCamp", root_path, class: "navbar-brand" %>
-      </div>
-      <div class="navbar-collapse collapse">
-        <form class="navbar-brand navbar-nav navbar-right" role="form">
-          <div>
-            <% if current_user %>
-              <%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user), class: "navbar-brand" %>
 
-              <%= link_to "Sign Out", signout_path, class: "navbar-brand" %>
-            <% else %>
-              <%= link_to "Sign Up", signup_path, class: "navbar-brand" %> |
+<body style= "padding-top: 100px">
 
-              <%= link_to "Sign In", signin_path, class: "navbar-brand" %>
-            <% end %>
-          </div>
-        </form>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+          <font size= "6"><%= link_to "gCamp", root_path, class: "navbar-brand" %> </font>
+        <div class= "navbar-brand navbar-nav navbar-right">
+         <% if current_user %>
+         <%= link_to ("#{current_user.first_name} #{current_user.last_name}"), user_path(current_user) %>
+         |
+         <%= link_to "Sign Out", signout_path %>
+         <% else %>
+         <%= link_to "Sign Up", signup_path %>
+         |
+         <%= link_to "Sign In", signin_path %>
+         <% end %>
+        </div>
       </div>
     </div>
-  </div>
-
 
   <div class="container">
 
