@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+@task = Task.new(params.require(:task).permit(:description, :complete, :due_date))
   end
 
   def new
