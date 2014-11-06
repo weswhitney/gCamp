@@ -16,13 +16,11 @@
           <%= link_to "gCamp", root_path, class: "navbar-brand" %>
         <div class= "navbar-brand navbar-nav navbar-right">
          <% if current_user %>
-         <%= link_to ("#{current_user.first_name} #{current_user.last_name}"), user_path(current_user) %>
-         |
-         <%= link_to "Sign Out", signout_path %>
+         <%= link_to ("#{current_user.first_name} #{current_user.last_name}"), user_path(current_user), class: 'navbar-link' %>
+         <%= link_to "Sign Out", signout_path, class: 'navbar-link' %>
          <% else %>
-         <%= link_to "Sign Up", signup_path %>
-         |
-         <%= link_to "Sign In", signin_path %>
+         <%= link_to "Sign Up", signup_path, class: 'navbar-link' %>
+         <%= link_to "Sign In", signin_path, class: 'navbar-link' %>
          <% end %>
         </div>
       </div>
