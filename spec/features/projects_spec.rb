@@ -2,53 +2,59 @@ require 'rails_helper'
 
 feature "Projects" do
 
-  scenario "User creates a project" do
+scenario "User creates a project" do
 
-    visit root_path
-    expect(page).to have_content("My aweeesome event")
-    click_on "edit"
-    fill_in "Description", with: "My awesome event"
-    click_on "Update Event"
+  visit "/projects"
+  click_on "Create Project"
+  fill_in "Name", with: "Awes proj"
+  click_on "Create Project"
 
-    expect(page).to have_content("My awesome event")
-    expect(page).to have_no_content("My aweeesome event")
-  end
+  expect(page).to have_content("Project was successfully created.")
 
-  scenario "User reads a project" do
+end
 
-    visit root_path
-    expect(page).to have_content("My aweeesome event")
-    click_on "edit"
-    fill_in "Description", with: "My awesome event"
-    click_on "Update Event"
+scenario "User sees project" do
 
-    expect(page).to have_content("My awesome event")
-    expect(page).to have_no_content("My aweeesome event")
-  end
+  Project.create!(
+    name: "Awesome"
+  )
 
-  scenario "User updates a project" do
+  visit "/projects"
+  click_on "Awesome"
+  expect(page).to have_content("Awesome")
 
-    visit root_path
-    expect(page).to have_content("My aweeesome event")
-    click_on "edit"
-    fill_in "Description", with: "My awesome event"
-    click_on "Update Event"
+end
 
-    expect(page).to have_content("My awesome event")
-    expect(page).to have_no_content("My aweeesome event")
-  end
+scenario "User edits a user" do
 
-  scenario "User deletes a project" do
+  Project.create!(
+    name: "Awesome"
+  )
 
-    visit root_path
-    expect(page).to have_content("My aweeesome event")
-    click_on "edit"
-    fill_in "Description", with: "My awesome event"
-    click_on "Update Event"
+  visit "/projects"
+  click_on "edit"
+  fill_in "Name", with: "Awesomeness"
+  click_on "Update Project"
 
-    expect(page).to have_content("My awesome event")
-    expect(page).to have_no_content("My aweeesome event")
-  end
+  expect(page).to have_content("Project was successfully updated")
+  expect(page).to have_content("Awesomeness")
 
+end
+
+scenario "User deletes a project" do
+
+  Project.create!(
+    name: "Awesome"
+  )
+
+
+  visit "/projects"
+  click_on "edit"
+  click_on "Update Project"
+  click_on "Delete"
+  expect(page).to have_content("Project was successfully deleted")
+  expect(page).to have_no_content("Awesome")
+
+end
 
 end
