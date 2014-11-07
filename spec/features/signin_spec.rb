@@ -15,6 +15,12 @@ feature "Sign in" do
     click_on "Sign in"
 
     expect(page).to have_content("Sign Out")
+
+    click_on "Sign Out"
+
+    expect(page).to have_content("Sign In")
+
+
   end
 
   scenario "User signs in" do
