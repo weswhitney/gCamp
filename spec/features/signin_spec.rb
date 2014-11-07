@@ -4,14 +4,34 @@ feature "Sign in" do
 
   scenario "User signs in" do
 
-    visit root_path
-    expect(page).to have_content("My aweeesome event")
-    click_on "edit"
-    fill_in "Description", with: "My awesome event"
-    click_on "Update Event"
+    User.create!(
+      email: "joe@email.com" , password: "1234"
+    )
 
-    expect(page).to have_content("My awesome event")
-    expect(page).to have_no_content("My aweeesome event")
+
+    visit '/sign-in'
+    fill_in "Email", with: "joe@email.com"
+    fill_in "Password", with: "1234"
+    click_on "Sign in"
+
+    expect(page).to have_content("Sign Out")
   end
+
+  scenario "User signs in" do
+
+    User.create!(
+      email: "joe@email.com" , password: "1234"
+    )
+
+
+    visit '/sign-in'
+    fill_in "Email", with: "joe@email.com"
+    fill_in "Password", with: "1235"
+    click_on "Sign in"
+
+    expect(page).to have_content("Username / password combination is invalid")
+  end
+
+
 
 end
