@@ -19,8 +19,11 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params.require(:project).permit(:name))
-    @project.save
+    if @project.save
     redirect_to project_path(@project), notice: 'Project was successfully created.'
+  else
+    render :new
+  end
   end
 
   def update
