@@ -1,36 +1,45 @@
 <%= form_for @task, html: {class: "form-horizontal"} do |f| %>
-
   <div class="form-group row">
-
-    <% if @task.errors.present? %>
-      <ul class="list list-unstyled text-danger">
-        <% @task.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-
-      <%= f.label :description, class: "col-sm-2" %>
-    <div class="col-sm-4">
-      <%= f.text_field :description, class: 'form-control' %>
+  <% if @task.errors.any? %>
+    <div class="col-sm-offset-1 col-sm-6 alert alert-danger">
+      <h3><%= pluralize(@task.errors.count, "error") %> prohibited this post from being saved:</h3>
+        <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="form-group row">
-      <%= f.label :due_date, class: "col-sm-2" %>
-    <div class="col-sm-4">
+  <% end %>
+
+
+
+    <div class="form-group row">
+      <%= f.label :description, class: "col-sm-1 control-label" %>
+        <div class="col-sm-4">
+          <%= f.text_field :description, class: 'form-control' %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :due_date, class: "col-sm-1 control-label" %>
+        <div class="col-sm-2">
       <%= f.date_field :due_date, class: "form-control" %>
     </div>
   </div>
+
   <% unless current_page?(new_task_path) %>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <label>
-        <%= f.check_box :complete %>
-        <%= f.label :complete %>
-      </label>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :complete %> Complete
+          </label>
+        </div>
+      </div>
     </div>
-  </div>
   <% end %>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <%= f.submit class: 'btn btn-primary' %>
