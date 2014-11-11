@@ -1,6 +1,15 @@
 <%= form_for @task, html: {class: "form-horizontal"} do |f| %>
 
   <div class="form-group row">
+
+    <% if @task.errors.present? %>
+      <ul class="list list-unstyled text-danger">
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
       <%= f.label :description, class: "col-sm-2" %>
     <div class="col-sm-4">
       <%= f.text_field :description, class: 'form-control' %>

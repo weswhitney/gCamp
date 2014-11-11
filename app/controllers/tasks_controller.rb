@@ -22,12 +22,13 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(params.require(:task).permit(:description, :complete, :due_date))
-    @task.save
-    redirect_to @task, notice: 'Task was successfully created.'
+    if @task.save
+      redirect_to @task, notice: 'Task was successfully created.'
+    else
+      render :new
+    end
   end
 
-  # PATCH/PUT /tasks/1
-  # PATCH/PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
     @task.update(params.require(:task).permit(:description, :complete, :due_date))

@@ -15,6 +15,16 @@ feature "Tasks" do
 
   end
 
+  scenario "User attempts to create a task with no description" do
+
+    visit "/tasks"
+    click_on "Create Task"
+    click_on "Create Task"
+
+    expect(page).to have_content("Description can't be blank")
+
+  end
+
   scenario "User sees show page" do
 
     Task.create!(
