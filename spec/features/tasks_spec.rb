@@ -28,7 +28,9 @@ feature "Tasks" do
   scenario "User sees show page" do
 
     Task.create!(
-      description: "bowling" , complete: "false" , due_date: "11/05/2014"
+      description: "bowling",
+      complete: "false",
+      due_date: "11/15/2016"
     )
 
     visit "/tasks"
@@ -40,7 +42,7 @@ feature "Tasks" do
   scenario "User edits a task" do
 
     Task.create!(
-      description: "bowling" , complete: "false" , due_date: "11/05/2014"
+      description: "bowling" , complete: "false" , due_date: "11/15/2016"
     )
 
     visit "/tasks"
@@ -56,7 +58,7 @@ feature "Tasks" do
   scenario "User deletes a task" do
 
     Task.create!(
-      description: "bowling" , complete: "false" , due_date: "11/05/2014"
+      description: "bowling" , complete: "false" , due_date: "11/05/2016"
     )
 
     visit "/tasks"

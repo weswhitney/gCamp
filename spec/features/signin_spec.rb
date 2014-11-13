@@ -5,7 +5,10 @@ feature "Sign in" do
   scenario "User signs in" do
 
     User.create!(
-      email: "joe@email.com" , password: "1234"
+      email: "joe@email.com",
+      password: "1234",
+      first_name: "Joe",
+      last_name: "Guy"
     )
 
 
@@ -23,10 +26,13 @@ feature "Sign in" do
 
   end
 
-  scenario "User signs in" do
+  scenario "User signs in with incorrect password" do
 
     User.create!(
-      email: "joe@email.com" , password: "1234"
+      email: "joe@email.com",
+      password: "1234",
+      first_name: "Joe",
+      last_name: "Guy"
     )
 
 

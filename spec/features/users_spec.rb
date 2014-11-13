@@ -20,7 +20,11 @@ feature "Users" do
   scenario "User sees show user" do
 
     User.create!(
-      first_name: "Jobe", last_name: "Example", email: "gob@job.com", password_digest: "1234"
+      first_name: "Jobe",
+      last_name: "Example",
+      email: "gob@job.com",
+      password: "1234",
+      password_confirmation: "1234"
     )
 
     visit "/users"
@@ -32,22 +36,31 @@ feature "Users" do
   scenario "User edits a user" do
 
     User.create!(
-      first_name: "Jobe" , last_name: "Example" , email: "gob@job.com", password_digest: "1234"
+      first_name: "Jobe",
+      last_name: "Example",
+      email: "gob@job.com",
+      password: "1234",
+      password_confirmation: "1234"
     )
 
     visit "/users"
     click_on "edit"
+    fill_in "First name", with: "Gob"
     click_on "Update User"
 
     expect(page).to have_content("User was successfully updated")
-    expect(page).to have_content("Jobe")
+    expect(page).to have_content("Gob")
 
   end
 
   scenario "User deletes a user" do
 
     User.create!(
-      first_name: "Jobe" , last_name: "Example" , email: "gob@job.com", password_digest: "1234",
+      first_name: "Jobe",
+      last_name: "Example",
+      email: "gob@job.com",
+      password: "1234",
+      password_confirmation: "1234"
     )
 
 
