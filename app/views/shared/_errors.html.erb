@@ -1,12 +1,12 @@
 <% if instance.errors.any? %>
-<div class='row'>
-  <div class="col-sm-offset-1 col-sm-6 alert bg-danger">
-    <h3><%= pluralize(instance.errors.count, "error") %> prohibited this post from being saved:</h3>
-    <ul>
-      <% instance.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+  <div class='row'>
+    <div class="col-sm-offset-2 col-sm-6 alert bg-danger">
+      <ul>
+        <h3><%= pluralize(instance.errors.count, "error") %> prohibited this post from being saved:</h3>
+        <% instance.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
 <% end %>
