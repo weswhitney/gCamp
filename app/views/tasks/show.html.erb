@@ -1,9 +1,3 @@
-  <% if notice %>
-    <div class="alert alert-success text-center">
-      <%= notice %>
-    </div>
-  <% end %>
-
   <p>
     <strong>Description:</strong>
     <%= @task.description %>
@@ -14,12 +8,10 @@
   </p>
   <p>
     <strong>Due Date:</strong>
-
       <% if @task.due_date %>
       <%= @task.due_date.strftime("%m/%d/%Y") %>
       <% else nil %>
       <%end%>
-
   </p>
   <br>
 
