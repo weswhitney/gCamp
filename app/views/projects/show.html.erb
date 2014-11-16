@@ -1,9 +1,13 @@
-<div class= "page-header">
-  <div class= "pull-right">
-    <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
-    <%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<div class= "page-header row">
+
+  <h1 class="col-md-9"><%= @project.name %></h1>
+
+    <div class= "col-md-2 task-create-button pull-right">
+      <span class="pull-right">
+        <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
+        <%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      </span>
   </div>
-    <h2><%= @project.name %></h2>
 </div>
 
 
