@@ -10,6 +10,5 @@ class Task < ActiveRecord::Base
   end
 
   belongs_to :project
-  end
 
 end

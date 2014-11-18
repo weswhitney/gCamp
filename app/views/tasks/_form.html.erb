@@ -1,7 +1,7 @@
 <div class="page-header">
   <h2><%= title %></h2>
 </div>
-  <%= form_for @task, html: {class: "form-horizontal"} do |f| %>
+  <%= form_for [@project, @task], html: {class: "form-horizontal"} do |f| %>
 
     <%= render "shared/errors", instance: @task %>
 

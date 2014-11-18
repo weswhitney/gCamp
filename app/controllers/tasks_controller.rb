@@ -5,26 +5,26 @@ class TasksController < ApplicationController
 
   def index
     if params[:complete]
-     @tasks = @projects.tasks.order(params[:sort_by])
+     @tasks = @project.tasks.order(params[:sort_by])
     else
-     @tasks = @projects.task.order(params[:sort_by]).where(complete: false)
+     @tasks = @project.tasks.order(params[:sort_by]).where(complete: false)
     end
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = @projects.tasks.find(params[:id])
   end
 
   def new
-    @task = @projects.tasks.new
+    @task = @project.tasks.new
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = @projects.tasks.find(params[:id])
   end
 
   def create
-    @task = Task.new(params.require(:task).permit(:description, :complete, :due_date))
+    @task = @project.tasks.new(params.require(:task).permit(:description, :complete, :due_date))
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
     else
@@ -33,13 +33,13 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = @projects.tasks.find(params[:id])
     @task.update(params.require(:task).permit(:description, :complete, :due_date))
     redirect_to @task, notice: 'Task was successfully updated.'
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    @task = @projects.tasks.find(params[:id])
     @task.destroy
     redirect_to @task, notice: 'Task was successfully destroyed.'
   end
