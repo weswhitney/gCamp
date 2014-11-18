@@ -1,10 +1,13 @@
 class TasksController < ApplicationController
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
 
   def index
     if params[:complete]
-     @tasks = Task.order(params[:sort_by])
+     @tasks = @projects.tasks.order(params[:sort_by])
     else
-     @tasks = Task.order(params[:sort_by]).where(complete: false)
+     @tasks = @projects.task.order(params[:sort_by]).where(complete: false)
     end
   end
 
@@ -13,7 +16,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = @projects.tasks.new
   end
 
   def edit
