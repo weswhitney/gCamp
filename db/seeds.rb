@@ -1,7 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Project.delete_all
+Task.delete_all
+User.delete_all
+25.times do
+  project = Project.create!(name: "#{Faker::Hacker.ingverb} #{Faker::Hacker.noun}")
+    rand(10).times do
+      Task.create!(description: Faker::Lorem.sentence,
+                  due_date: Faker::Time.forward(24),
+                  complete: [true, true, false].sample,
+                  project_id: project.id)
+                end
+
+    rand(5).times do
+      user = User.create!(
+                      first_name: Faker::Name.first_name,
+                      last_name: Faker::Name.last_name,
+                      email: Faker::Internet.email,
+                      password_digest: Faker::Internet.password)
+                end
+end

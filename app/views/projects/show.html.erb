@@ -1,5 +1,5 @@
 <div class= "page-header row">
-  
+
 
   <h1 class="col-md-9"><%= @project.name %></h1>
 
@@ -11,6 +11,9 @@
   </div>
 </div>
 
+<ol class="breadcrumb">
+  <li><%= link_to "Projects", projects_path %></li>
+  <li class="active"><%= @project.name %></li>
+</ol>
 
-
-<br>
+<%= link_to pluralize(@project.tasks.count, "task"), project_tasks_path(@project) %>
