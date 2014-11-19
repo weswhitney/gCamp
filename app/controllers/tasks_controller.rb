@@ -4,10 +4,10 @@ class TasksController < ApplicationController
   end
 
   def index
-    if params[:complete]
-     @tasks = @project.tasks.order(params[:sort_by])
+    if params[:all]
+      @tasks = @project.tasks.order(params[:sort_by])
     else
-     @tasks = @project.tasks.order(params[:sort_by]).where(complete: false)
+      @tasks = @project.tasks.order(params[:sort_by]).where(complete: false)
     end
   end
 
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   def update
     @task = @project.tasks.find(params[:id])
     @task.update(params.require(:task).permit(:description, :complete, :due_date))
-    redirect_to @task, notice: 'Task was successfully updated.'
+    redirect_to project_tasks_path, notice: 'Task was successfully updated.'
   end
 
   def destroy

@@ -2,7 +2,9 @@
   <h1>Task for <%= @project.name %>
     <small>
       <div class="pull-right">
-      <%= link_to 'Create Task', new_project_task_path(@project), :class => "btn btn-info" %>
+      <%= link_to_unless params[:show_by] == 'all', 'All', project_tasks_path(@project, show_by: "all" ) %> |
+      <%= link_to_unless !params[:show_by], 'Incomplete', project_tasks_path(@project) %>
+      <%= link_to 'Create Task', new_project_task_path(@project), class: "btn btn-info" %>
       </div>
     </small>
   </h1>
