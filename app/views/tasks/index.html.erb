@@ -21,10 +21,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= link_to 'Description', project_tasks_path(@project, sort_by: 'description', complete: params[:complete]) %></th>
-      <th><%= link_to 'Complete', project_tasks_path(@project, sort_by: 'complete',complete: params[:complete]) %></th>
-      <th><%= link_to 'Due', project_tasks_path(@project, sort_by: 'due_date', complete: params[:complete]) %></th>
-      <th colspan="3"></th>
+      <th><%= link_to "Description", params.merge(:sort_by => "description") %></th>
+        <th><%= link_to "Due", params.merge(:sort_by => "date") %></th>
+        <th>Complete</th>
     </tr>
   </thead>
 

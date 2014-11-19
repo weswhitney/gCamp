@@ -4,8 +4,8 @@ class TasksController < ApplicationController
   end
 
   def index
-    if params[:all]
-      @tasks = @project.tasks.order(params[:sort_by])
+    if params[:show_by] == "all"
+      @tasks = @project.tasks.all
     else
       @tasks = @project.tasks.order(params[:sort_by]).where(complete: false)
     end
