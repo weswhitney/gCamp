@@ -1,37 +1,64 @@
-<div class="page-header">
-  <h2><%= @project.name %>: Manage Members</h2>
-</div>
+<div class="container">
 
-<ol class="breadcrumb">
-  <li><%= link_to "Projects", projects_path %></li>
-  <li><%= link_to @project.name, project_path(@project) %></li>
-  <li class="active"><%= @project.name %></li>
-</ol>
-
-<%= render "shared/errors", instance: @membership %>
-
-<div class="well form-inline col-md-6">
-  <%= form_for [@project, @membership] do |f| %>
-  <div class="form-group">
-  <%= f.collection_select(:user_id, User.all, :id, :full_name,{include_blank: "Please select a user..."}, {class: "form-control"}) %>
-  <%= f.select :role, ["member", "owner"], {include_blank: true}, {class: "form-control"} %>
-  <%= f.submit class: "btn btn-primary" %>
+  <!-- header -->
+  <div class="page-header">
+    <h1><%= @project.name %>: Manage Members</h1>
+  <!-- breadcrumb -->
+    <ol class="breadcrumb">
+      <li><%= link_to "Projects", projects_path %></li>
+      <li><%= link_to @project.name, project_path(@project) %></li>
+      <li class="active"><%= @project.name %></li>
+    </ol>
   </div>
-  <% end %>
+  <!-- errors -->
+  <%= render "shared/errors", instance: @membership %>
+
+  <!-- form -->
+  <div class="row">
+    <div class="well form-inline col-md-6">
+      <%= form_for [@project, @membership] do |f| %>
+        <div class="form-group col-md-5">
+          <%= f.collection_select(
+          :user_id,
+          User.all,
+          :id,
+          :full_name,
+          {include_blank: "Please select a user..."},
+          {class: "form-control"}) %>
+        </div>
+
+        <div class="form-group col-md-3">
+          <%= f.select :role,
+          ["member", "owner"],
+          {include_blank: true},
+          {class: "form-control"} %>
+        </div>
+        <div class="col-md-4 pull-right">
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+
 
 <table class="table">
+  <tbody>
    <% @project.users.each do |user| %>
-     <% user.memberships.where(project_id: @project.id).each do |membership| %>
+     <tr>
+       <% user.memberships.where(project_id: @project.id).each do |membership| %>
        <%= form_for [@project, membership] do |f| %>
-       <tr><td class="col-sm-2"><%= link_to user.full_name, user_path(user) %></td>
-         <td class="col-sm-2"><%= f.select :role, ["member", "owner"],{},{class: "form-control"} %></td>
-         <td class="col-sm-2"><%= f.submit class: "btn btn-primary" %></td>
-         <td><%= link_to project_membership_path(@project, membership), confirm: 'Are you sure ?', method: :delete do %>
-         <i class="glyphicon glyphicon-remove"></i>
-       </td></tr>
+       <tr>
+         <td class="col-sm-2"><%= link_to user.full_name, user_path(user) %></td>
+           <td class="col-sm-2"><%= f.select :role, ["member", "owner"], {}, {class: "form-control"} %></td>
+           <td class="col-sm-1"><%= f.submit class: "btn btn-primary" %></td>
+           <td><%= link_to project_membership_path(@project, membership), confirm: 'Are you sure ?', method: :delete do %>
+           <i class="glyphicon glyphicon-remove"></i></td>
+           <% end %>
          <% end %>
+         </tr>
        <% end %>
-     <% end %>
+     </tr>
    <% end %>
+  </tbody>
 </table>
