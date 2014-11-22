@@ -12,6 +12,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Members</th>
       <th>Tasks</th>
     </tr>
   </thead>
@@ -23,7 +24,10 @@
           <%= link_to project.name, project_path(project) %>
         </td>
         <td>
-          <%=  link_to project.tasks.count, project_tasks_path(project) %>
+          <%= link_to project.memberships.count, project_memberships_path(project) %>
+        </td>
+        <td>
+          <%= link_to project.tasks.count, project_tasks_path(project) %>
         </td>
         <td>
           <%= link_to 'edit', edit_project_path(project), :class => 'pull-right' %>
