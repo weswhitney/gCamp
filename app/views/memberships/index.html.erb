@@ -30,7 +30,7 @@
         <div class="form-group col-md-3">
           <%= f.select :role,
           ["member", "owner"],
-          {include_blank: true},
+          {include_blank: false},
           {class: "form-control"} %>
         </div>
         <div class="col-md-4 pull-right">
@@ -52,9 +52,13 @@
          <td class="col-sm-2"><%= link_to user.full_name, user_path(user) %></td>
            <td class="col-sm-2"><%= f.select :role, ["member", "owner"], {}, {class: "form-control"} %></td>
            <td class="col-sm-1"><%= f.submit class: "btn btn-primary" %></td>
-           <td><%= link_to project_membership_path(@project, membership), confirm: 'Are you sure ?', method: :delete do %>
-           <i class="glyphicon glyphicon-remove"></i></td>
-           <% end %>
+           <td>
+            <%= link_to "",
+            project_membership_path(@project, membership),
+            method: :delete,
+            data: {confirm: 'Are you sure?'},
+            class: "glyphicon glyphicon-remove" %>
+           </td>
          <% end %>
          </tr>
        <% end %>
