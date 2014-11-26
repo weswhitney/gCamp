@@ -34,7 +34,7 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.description, project_task_path(task.project, task) %>
-        <span class="badge"><%= "comment counts" %></span>
+        <span class="badge"><%= task.comments.count %></span>
         </td>
         <td><%= task.complete %></td>
         <td>
