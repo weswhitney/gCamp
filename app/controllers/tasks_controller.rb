@@ -13,6 +13,8 @@ class TasksController < ApplicationController
 
   def show
     @task = @project.tasks.find(params[:id])
+    @comment = @task.comments.new
+    @comments = @task.comments.all
   end
 
   def new
@@ -43,5 +45,4 @@ class TasksController < ApplicationController
     @task.destroy
     redirect_to project_tasks_path, notice: 'Task was successfully destroyed.'
   end
-
 end
