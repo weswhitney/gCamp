@@ -49,9 +49,12 @@
               <%= link_to 'Edit', edit_project_task_path(task.project, task), :class => "btn btn-info" %>
             </td>
             <td>
-              <%= link_to project_task_path(task.project, task), confirm: 'Are you sure?', method: :delete do %>
-            <i class="glyphicon glyphicon-remove"></i></td>
-            <% end %>
+              <%= link_to "",
+               project_task_path(task.project, task),
+               method: :delete,
+               data: {confirm: 'Are you sure?'},
+               class: "glyphicon glyphicon-remove" %>
+            </td>
           </div>
         </td>
       </tr>
