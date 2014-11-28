@@ -1,45 +1,55 @@
 <!DOCTYPE html>
   <html lang="en">
     <head>
-      <title>gCamp</title>
-      <%= stylesheet_link_tag 'application' %>
-      <%= javascript_include_tag 'application' %>
-      <%= csrf_meta_tags %>
+      <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <title>gCamp</title>
+
+      <%= csrf_meta_tags %>
+      <%= javascript_include_tag 'application' %>
+      <%= stylesheet_link_tag 'application' %>
     </head>
 
-    <body style= "padding-top: 100px">
+  <!-- <body style= "padding-top: 100px"> -->
+    <body>
+    <div class="jumbotron" style="background-color: rgba(0, 0, 0, 0)">
 
-      <!-- navigation bar -->
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <%= link_to "gCamp", root_path, class: "navbar-brand" %>
-            <ul class="nav navbar-nav pull-right">
+    </div>
+    <!-- page content -->
+    <div class="container">
+
+      <% if notice != nil %>
+        <div class="alert alert-success text-center">
+          <%= notice %>
+        </div>
+      <% end %>
+
+    <%= yield %>
+
+    <!-- navigation bar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <%= link_to "gCamp", root_path %>
+            </div>
+            <div class="navbar-brand pull-right">
              <% if current_user %>
-               <li><%= link_to current_user.full_name, user_path(current_user) %></li>
-               <li><%= link_to "Sign Out", signout_path %></li>
+               <%= link_to current_user.full_name, user_path(current_user) %> &nbsp;
+               <%= link_to "Sign Out", signout_path %>
              <% else %>
-               <li><%= link_to "Sign Up", signup_path %></li>
-               <li><%= link_to "Sign In", signin_path %></li>
+               <%= link_to "Sign Up", signup_path %>
+               <%= link_to "Sign In", signin_path %>
              <% end %>
-            </ul>
-          </div>
+           </div>
         </div>
       </div>
+    </div>
 
-      <!-- page content -->
-      <div class="container">
-        <% if notice != nil %>
-          <div class="alert alert-success col-md-12 text-center">
-            <%= notice %>
-          </div>
-        <% end %>
-        <%= yield %>
-      </div>
-
-
+  <!-- footer -->
       <footer>
         <div class="container">
           <hr>
@@ -55,7 +65,7 @@
               |
               <%= link_to "projects", projects_path %>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 pull-right">
               <div class="pull-right">
                 <%= link_to "https://students.gschool.it/cohorts/3/students/95" do %>
                   <%= image_tag("gschool-logo.png", width: "20em") %>
@@ -72,7 +82,6 @@
                 <%= link_to "https://twitter.com/wes_whitney" do %>
                   <%= image_tag("Twitter_logo_blue.png", width: "20em") %>
                 <% end %>
-                |
               </div>
             </div>
           </div>
