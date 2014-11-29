@@ -36,8 +36,11 @@ class TasksController < ApplicationController
 
   def update
     @task = @project.tasks.find(params[:id])
-    @task.update(params.require(:task).permit(:description, :complete, :due_date))
-    redirect_to project_tasks_path, notice: 'Task was successfully updated.'
+    if @task.update(params.require(:task).permit(:description, :complete, :due_date))
+      redirect_to project_tasks_path, notice: 'Task was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
