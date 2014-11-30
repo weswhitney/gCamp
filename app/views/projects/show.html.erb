@@ -1,26 +1,26 @@
-<div class= "page-header row">
-
-
-  <h1 class="col-md-9"><%= @project.name %></h1>
-
-    <div class= "col-md-2 task-create-button pull-right">
-      <span class="pull-right">
-        <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
-        <%= link_to 'Delete',
-        project_path(@project),
-        method: :delete,
-        data: {confirm: 'Are you sure?'},
-        class: "btn btn-danger" %>
-      </span>
+  <!-- header -->
+<div class= "page-header">
+  <div class="row">
+    <h1 class="col-md-12"><%= @project.name %>
+      <%= link_to "Edit", edit_project_path(@project), class: "btn btn-info pull-right" %>
+    </h1>
   </div>
 </div>
-
+  <!-- breadcrumb -->
 <ol class="breadcrumb">
   <li><%= link_to "Projects", projects_path %></li>
   <li class="active"><%= @project.name %></li>
 </ol>
-
+  <!-- links -->
 <%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %>
 <br>
 <br>
 <%= link_to pluralize(@project.memberships.count, "Membership"), project_memberships_path(@project) %>
+  <!-- well -->
+<div class="well">
+  <%= link_to "Delete",
+  project_path(@project),
+  method: :delete,
+  data: {confirm: "Are you sure?"},
+  class: "btn btn-danger" %>
+</div>
