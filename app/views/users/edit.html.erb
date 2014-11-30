@@ -1,11 +1,9 @@
 <%= render 'form', title: "Edit User" %>
 
 <div class="text-center well col-md-offset-2 col-md-4">
-  <div class="col-md-4 col-md-offset-2">
     <%= link_to 'delete user',
-    @user,
+    user_path,
     method: :delete,
-    data: {confrim: "Are you sure?"},
+    data: {confrim: ' Are you sure?'},
     class: 'btn btn-danger' %>
-  </div>
 </div>
