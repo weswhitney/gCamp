@@ -16,11 +16,23 @@
 <br>
 <br>
 <%= link_to pluralize(@project.memberships.count, "Membership"), project_memberships_path(@project) %>
+
+<br>
+<br>
   <!-- well -->
 <div class="well">
-  <%= link_to "Delete",
-  project_path(@project),
-  method: :delete,
-  data: {confirm: "Are you sure?"},
-  class: "btn btn-danger" %>
+  <p>
+    <strong>Delete Project</strong>
+  </p>
+  <p>
+    Deleting this project will also delete
+    <%= pluralize(@project.memberships.count, "Membership") %>,
+    <%= pluralize(@project.tasks.count, "Task") %>
+    and associated comments.
+  </p>
+    <%= link_to "Delete",
+    project_path(@project),
+    method: :delete,
+    data: {confirm: "Are you sure?"},
+    class: "btn btn-danger" %>
 </div>
