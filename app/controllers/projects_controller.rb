@@ -29,8 +29,11 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     project_params = params.require(:project).permit(:name)
-    @project.update(project_params)
+    if @project.update(project_params)
     redirect_to project_path, notice: 'Project was successfully updated.'
+  else
+    render :edit
+  end
   end
 
   def destroy
