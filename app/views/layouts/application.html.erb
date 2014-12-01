@@ -16,40 +16,33 @@
 
   <!-- <body style= "padding-top: 100px"> -->
     <body>
-    <div class="jumbotron" style="background-color: rgba(0, 0, 0, 0)">
 
-    </div>
-    <!-- page content -->
-    <div class="container">
-
-      <% if notice != nil %>
-        <div class="alert alert-success text-center">
-          <%= notice %>
-        </div>
-      <% end %>
-
-    <%= yield %>
-
-    <!-- navigation bar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-brand">
-          <%= link_to "gCamp", root_path %>
-            </div>
-            <div class="navbar-brand pull-right">
-             <% if current_user %>
-               <%= link_to current_user.full_name, user_path(current_user) %> &nbsp;
-               <%= link_to "Sign Out", signout_path %>
-             <% else %>
-               <%= link_to "Sign Up", signup_path %>
-               <%= link_to "Sign In", signin_path %>
-             <% end %>
-           </div>
+      <!-- navigation bar -->
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <%= link_to "gCamp", root_path, class: "navbar-brand" %>
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user %>
+              <li><%= link_to current_user.full_name, user_path(current_user) %></li>
+              <li><%= link_to "Sign Out", signout_path %></li>
+            <% else %>
+              <li><%= link_to "Sign Up", signup_path %></li>
+              <li><%= link_to "Sign In", signin_path %></li>
+            <% end %>
+          </ul>
         </div>
       </div>
-    </div>
 
-  <!-- footer -->
+      <!-- page content -->
+      <div class="container">
+        <% if notice != nil %>
+          <div class="alert alert-success text-center">
+            <%= notice %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+
       <footer>
         <div class="container">
           <hr>
@@ -60,10 +53,6 @@
               <%= link_to "terms", terms_path %>
               |
               <%= link_to "faq", faq_path %>
-              |
-              <%= link_to "users", users_path %>
-              |
-              <%= link_to "projects", projects_path %>
             </div>
             <div class="col-md-6 pull-right">
               <div class="pull-right">
