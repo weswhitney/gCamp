@@ -43,7 +43,6 @@ feature "Tasks" do
     )
 
     visit project_tasks_path(project1)
-    click_on "Show"
     expect(page).to have_content("bowling")
 
   end
@@ -78,7 +77,7 @@ feature "Tasks" do
     )
 
     visit project_tasks_path(project1)
-    click_on "Delete"
+    find('.glyphicon').click
     expect(page).to have_content("Task was successfully destroyed")
 
   end
