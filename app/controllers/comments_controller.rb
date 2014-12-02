@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  before_action :ensure_current_user  
+
   before_action do
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:task_id])

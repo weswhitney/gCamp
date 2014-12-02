@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_action :ensure_current_user
 
   def index
     @users = User.all

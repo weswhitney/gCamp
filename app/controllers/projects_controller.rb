@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_current_user
 
   def index
     @projects = Project.all
@@ -41,12 +41,6 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     redirect_to projects_path, notice: 'Project was successfully deleted'
-  end
-
-  private
-
-  def set_project
-    @project = Project.find(params[:id])
   end
 
 end
