@@ -4,12 +4,3 @@ namespace :orphaned do
     Task.where.not(project_id: Project.all).delete_all
   end
 end
-
-
-
-
-
-
-
-
-# one line

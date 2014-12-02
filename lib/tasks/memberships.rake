@@ -5,6 +5,3 @@ namespace :orphaned do
     Membership.where.not(project_id: Project.all).delete_all
   end
 end
-
-
-# see schema
