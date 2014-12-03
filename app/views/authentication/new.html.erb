@@ -5,10 +5,10 @@
   <%= form_tag signin_path do |f| %>
 
     <% if @sign_in_error %>
-    <ul class="list list-unstyled text-danger">
+      <ul class="list list-unstyled text-danger">
         <li><%= @sign_in_error %></li>
+      </ul>
     <% end %>
-    </ul>
 
     <div>
       <%= label_tag :email %>
