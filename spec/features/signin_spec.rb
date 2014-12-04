@@ -5,10 +5,10 @@ feature "Sign in" do
   scenario "User signs in" do
 
     User.create!(
-      email: "joe@email.com",
-      password: "1234",
-      first_name: "Joe",
-      last_name: "Guy"
+    email: "joe@email.com",
+    password: "1234",
+    first_name: "Joe",
+    last_name: "Guy"
     )
 
 
@@ -22,17 +22,15 @@ feature "Sign in" do
     click_on "Sign Out"
 
     expect(page).to have_content("Sign In")
-
-
   end
 
   scenario "User signs in with incorrect password" do
 
     User.create!(
-      email: "joe@email.com",
-      password: "1234",
-      first_name: "Joe",
-      last_name: "Guy"
+    email: "joe@email.com",
+    password: "1234",
+    first_name: "Joe",
+    last_name: "Guy"
     )
 
 
@@ -43,7 +41,5 @@ feature "Sign in" do
 
     expect(page).to have_content("Username / password combination is invalid")
   end
-
-
 
 end

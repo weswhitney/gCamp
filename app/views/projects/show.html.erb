@@ -1,11 +1,11 @@
-  <!-- header -->
+<!-- header -->
 <div class="page-header">
   <div class="pull-right">
     <%= link_to "Edit", edit_project_path(@project), class: "btn btn-info" %>
   </div>
   <h1><%= @project.name %></h1>
 </div>
-  <!-- breadcrumb -->
+<!-- breadcrumb -->
 <ol class="breadcrumb">
   <li><%= link_to "Projects", projects_path %></li>
   <li class="active"><%= @project.name %></li>
@@ -32,9 +32,9 @@
     <%= pluralize(@project.tasks.count, "Task") %>
     and associated comments.
   </p>
-    <%= link_to "Delete",
-    project_path(@project),
-    method: :delete,
-    data: {confirm: "Are you sure?"},
-    class: "btn btn-danger" %>
+  <%= link_to "Delete",
+  project_path(@project),
+  method: :delete,
+  data: {confirm: "Are you sure?"},
+  class: "btn btn-danger" %>
 </div>

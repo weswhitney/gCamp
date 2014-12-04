@@ -2,6 +2,22 @@ require 'rails_helper'
 
 feature "Users" do
 
+  before do
+    User.create!(
+    email: "joe@email.com",
+    password: "1234",
+    first_name: "Joe",
+    last_name: "Guy"
+    )
+
+
+    visit '/sign-in'
+    fill_in "Email", with: "joe@email.com"
+    fill_in "Password", with: "1234"
+    click_on "Sign in"
+  end
+
+
   scenario "User creates a user" do
 
     visit "/users"
@@ -19,29 +35,13 @@ feature "Users" do
 
   scenario "User sees show user" do
 
-    User.create!(
-      first_name: "Jobe",
-      last_name: "Example",
-      email: "gob@job.com",
-      password: "1234",
-      password_confirmation: "1234"
-    )
-
     visit "/users"
-    click_on "Jobe Example"
-    expect(page).to have_content("Jobe")
+    click_on("Joe Guy", match: :first)
+    expect(page).to have_content("Joe")
 
   end
 
   scenario "User edits a user" do
-
-    User.create!(
-      first_name: "Jobe",
-      last_name: "Example",
-      email: "gob@job.com",
-      password: "1234",
-      password_confirmation: "1234"
-    )
 
     visit "/users"
     click_on "edit"
@@ -55,21 +55,13 @@ feature "Users" do
 
   scenario "User deletes a user" do
 
-    User.create!(
-      first_name: "Jobe",
-      last_name: "Example",
-      email: "gob@job.com",
-      password: "1234",
-      password_confirmation: "1234"
-    )
-
-
     visit "/users"
-    click_on "Jobe Example"
+    click_on("Joe Guy", match: :first)
     click_on "Edit"
     click_on "delete user"
+    save_and_open_page
     expect(page).to have_content("User was successfully deleted")
-    expect(page).to have_no_content("Jobe")
+    expect(page).to have_no_content("Joe")
 
   end
 

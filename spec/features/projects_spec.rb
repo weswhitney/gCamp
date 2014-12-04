@@ -2,8 +2,22 @@ require 'rails_helper'
 
 feature "Projects" do
 
-  scenario "User creates a project" do
+  before do
+    User.create!(
+      email: "joe@email.com",
+      password: "1234",
+      first_name: "Joe",
+      last_name: "Guy"
+    )
 
+    
+    visit '/sign-in'
+    fill_in "Email", with: "joe@email.com"
+    fill_in "Password", with: "1234"
+    click_on "Sign in"
+  end
+
+  scenario "User creates a project" do
     visit "/projects"
     click_on "Create Project"
     fill_in "Name", with: "Awes proj"
@@ -26,7 +40,7 @@ feature "Projects" do
   scenario "User sees project" do
 
     Project.create!(
-      name: "Awesome"
+    name: "Awesome"
     )
 
     visit "/projects"
@@ -38,7 +52,7 @@ feature "Projects" do
   scenario "User edits a project" do
 
     Project.create!(
-      name: "Awesome"
+    name: "Awesome"
     )
 
     visit "/projects"
@@ -54,7 +68,7 @@ feature "Projects" do
   scenario "User deletes a project" do
 
     Project.create!(
-      name: "Awesome"
+    name: "Awesome"
     )
 
 

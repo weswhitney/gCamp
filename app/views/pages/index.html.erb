@@ -38,8 +38,8 @@
       </div>
       <div class="panel-body">
         <ul>
-        <li>Comment on tasks and documents</li>
-        <li>Get email notifications</li>
+          <li>Comment on tasks and documents</li>
+          <li>Get email notifications</li>
         </ul>
       </div>
     </div>
@@ -47,10 +47,10 @@
 </div>
 
 <% @quotes.each do |quote| %>
-  <blockquote>
-    <%= quote.text %>
-    <footer>
-      <%= quote.author %>
-    </footer>
-  </blockquote>
+<blockquote>
+  <%= quote.text %>
+  <footer>
+    <%= quote.author %>
+  </footer>
+</blockquote>
 <% end %>

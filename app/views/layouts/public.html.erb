@@ -1,80 +1,75 @@
 <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="">
-      <meta name="author" content="">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-      <title>gCamp</title>
+  <title>gCamp</title>
 
-      <%= csrf_meta_tags %>
-      <%= javascript_include_tag 'application' %>
-      <%= stylesheet_link_tag 'application' %>
-    </head>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag 'application' %>
+</head>
 
-  <!-- <body style= "padding-top: 100px"> -->
-    <body>
+<!-- <body style= "padding-top: 100px"> -->
+<body>
 
-      <!-- navigation bar -->
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <%= link_to "gCamp", root_path, class: "navbar-brand" %>
-          <ul class="nav navbar-nav navbar-right">
-            <% if current_user %>
-              <li><%= link_to current_user.full_name, user_path(current_user) %></li>
-              <li><%= link_to "Sign Out", signout_path %></li>
-            <% else %>
-              <li><%= link_to "Sign Up", signup_path %></li>
-              <li><%= link_to "Sign In", signin_path %></li>
+  <!-- navigation bar -->
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <%= link_to "gCamp", root_path, class: "navbar-brand" %>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Sign Up", signup_path %></li>
+        <li><%= link_to "Sign In", signin_path %></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- page content -->
+  <div class="container">
+    <% if notice != nil %>
+    <div class="alert alert-success text-center">
+      <%= notice %>
+    </div>
+    <% end %>
+    <%= yield %>
+  </div>
+
+  <footer>
+    <div class="container">
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to "about", about_path %>
+          |
+          <%= link_to "terms", terms_path %>
+          |
+          <%= link_to "faq", faq_path %>
+        </div>
+        <div class="col-md-6 pull-right">
+          <div class="pull-right">
+            <%= link_to "https://students.gschool.it/cohorts/3/students/95" do %>
+            <%= image_tag("gschool-logo_icon.png") %>
             <% end %>
-          </ul>
-        </div>
-      </div>
-
-      <!-- page content -->
-      <div class="container">
-        <% if notice != nil %>
-          <div class="alert alert-success text-center">
-            <%= notice %>
-          </div>
-        <% end %>
-        <%= yield %>
-      </div>
-
-      <footer>
-        <div class="container">
-          <hr>
-          <div class="row">
-            <div class="col-md-6">
-              <%= link_to "about", about_path %>
-              |
-              <%= link_to "terms", terms_path %>
-              |
-              <%= link_to "faq", faq_path %>
-            </div>
-            <div class="col-md-6 pull-right">
-              <div class="pull-right">
-                <%= link_to "https://students.gschool.it/cohorts/3/students/95" do %>
-                  <%= image_tag("gschool-logo.png", width: "20em") %>
-                <% end %>
-                |
-                <%= link_to "http://www.linkedin.com/pub/wesley-whitney/a5/aa4/442/" do %>
-                  <%= image_tag("linked_in.png", width: "20em") %>
-                <% end %>
-                |
-                <%= link_to "https://github.com/weswhitney" do %>
-                  <%= image_tag("GitHub-Mark.png", width: "20em") %>
-                <% end %>
-                |
-                <%= link_to "https://twitter.com/wes_whitney" do %>
-                  <%= image_tag("Twitter_logo_blue.png", width: "20em") %>
-                <% end %>
-              </div>
-            </div>
+            |
+            <%= link_to "http://www.linkedin.com/pub/wesley-whitney/a5/aa4/442/" do %>
+            <%= image_tag("linked_in_icon.png") %>
+            <% end %>
+            |
+            <%= link_to "https://github.com/weswhitney" do %>
+            <%= image_tag("GitHub-Mark_icon.png") %>
+            <% end %>
+            |
+            <%= link_to "https://twitter.com/wes_whitney" do %>
+            <%= image_tag("Twitter_logo_blue_icon.png") %>
+            <% end %>
           </div>
         </div>
-      </footer>
-    </body>
-  </html>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

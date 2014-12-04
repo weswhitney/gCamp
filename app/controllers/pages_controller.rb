@@ -16,7 +16,7 @@ class PagesController < PublicController
 
     @quotes = [quote1, quote2, quote3]
   end
-
+  
   def faq
 
     faq1 = Faq.new

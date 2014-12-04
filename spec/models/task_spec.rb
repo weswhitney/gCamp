@@ -14,8 +14,8 @@ describe "Task" do
     travel_to 3.years.ago do
       task.due_date = Date.today
       task.save
-    task.valid?
-    expect(task.errors[:due_date].present?).to eq(false)
+      task.valid?
+      expect(task.errors[:due_date].present?).to eq(false)
     end
   end
 end

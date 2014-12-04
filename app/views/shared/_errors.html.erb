@@ -1,16 +1,16 @@
 <% if instance.errors.any? %>
-    <div class="alert alert-danger">
+<div class="alert alert-danger">
 
-      <strong>
-        <%= pluralize(instance.errors.count, "error") %>
-        prohibited this post from being saved:
-      </strong>
+  <strong>
+    <%= pluralize(instance.errors.count, "error") %>
+    prohibited this post from being saved:
+  </strong>
 
 
-      <ul>
-        <% instance.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <ul>
+    <% instance.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
