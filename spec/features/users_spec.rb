@@ -59,7 +59,6 @@ feature "Users" do
     click_on("Joe Guy", match: :first)
     click_on "Edit"
     click_on "delete user"
-    save_and_open_page
     expect(page).to have_content("User was successfully deleted")
     expect(page).to have_no_content("Joe")
 

@@ -3,14 +3,14 @@ require 'rails_helper'
 feature "Projects" do
 
   before do
-    User.create!(
-      email: "joe@email.com",
-      password: "1234",
-      first_name: "Joe",
-      last_name: "Guy"
+    @user = User.create!(
+    email: "joe@email.com",
+    password: "1234",
+    first_name: "Joe",
+    last_name: "Guy"
     )
 
-    
+
     visit '/sign-in'
     fill_in "Email", with: "joe@email.com"
     fill_in "Password", with: "1234"
@@ -39,21 +39,37 @@ feature "Projects" do
 
   scenario "User sees project" do
 
-    Project.create!(
+    project = Project.create!(
     name: "Awesome"
     )
 
+    Membership.create(
+    project: project,
+    user: @user,
+    role: 'owner'
+    )
+
+
     visit "/projects"
-    click_on "Awesome"
+    within '.table' do
+      click_on"Awesome"
+    end
     expect(page).to have_content("Awesome")
 
   end
 
   scenario "User edits a project" do
 
-    Project.create!(
+    project = Project.create!(
     name: "Awesome"
     )
+
+    Membership.create(
+    project: project,
+    user: @user,
+    role: 'owner'
+    )
+
 
     visit "/projects"
     click_on "edit"
@@ -67,9 +83,16 @@ feature "Projects" do
 
   scenario "User deletes a project" do
 
-    Project.create!(
+    project = Project.create!(
     name: "Awesome"
     )
+
+    Membership.create(
+    project: project,
+    user: @user,
+    role: 'owner'
+    )
+
 
 
     visit "/projects"
