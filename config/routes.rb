@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tasks do
-    resources :comments
-  end
+      resources :comments
+    end
     resources :memberships
   end
 

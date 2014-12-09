@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # def task_membership_match
+  #   if current_user.memberships.where(project_id: @project.id).present?
+  #     true
+  #   else
+  #     render file: 'public/404.html', status: :not_found, layout: false
+  #   end
+  # end
+
 
   helper_method :current_user
 
