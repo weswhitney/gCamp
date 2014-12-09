@@ -3,6 +3,7 @@ require 'rails_helper'
 feature "Users" do
 
   before do
+    User.delete_all
     User.create!(
     email: "joe@email.com",
     password: "1234",

@@ -3,6 +3,7 @@ require 'rails_helper'
 feature "Projects" do
 
   before do
+    User.delete_all
     @user = User.create!(
     email: "joe@email.com",
     password: "1234",

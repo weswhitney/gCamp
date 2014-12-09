@@ -2,7 +2,8 @@ require 'rails_helper'
 
 feature "Sign in" do
 
-  scenario "User signs in" do
+  before do
+    User.delete_all
 
     User.create!(
     email: "joe@email.com",
@@ -10,7 +11,9 @@ feature "Sign in" do
     first_name: "Joe",
     last_name: "Guy"
     )
+  end
 
+  scenario "User signs in" do
 
     visit '/sign-in'
     fill_in "Email", with: "joe@email.com"
@@ -25,14 +28,6 @@ feature "Sign in" do
   end
 
   scenario "User signs in with incorrect password" do
-
-    User.create!(
-    email: "joe@email.com",
-    password: "1234",
-    first_name: "Joe",
-    last_name: "Guy"
-    )
-
 
     visit '/sign-in'
     fill_in "Email", with: "joe@email.com"
