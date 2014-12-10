@@ -61,9 +61,7 @@ feature "Projects" do
 
   scenario "User edits a project" do
 
-    project = Project.create!(
-    name: "Awesome"
-    )
+    project = create_project
 
     Membership.create(
     project: project,

@@ -12,6 +12,10 @@
   <strong>Email:</strong>
   <%= mail_to @user.email %>
 </p>
+<p>
+  <strong>Pivotal Token Tracker:</strong>
+  <%= "#{@user.pivotal_tracker_token[0..3]}*************************"%>
+</p>
 <br>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

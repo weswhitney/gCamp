@@ -4,6 +4,8 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    tracker_projects = TrackerApi.new
+    @tracker_projects = tracker_projects.projects(current_user.pivotal_tracker_token)
   end
 
   def show
