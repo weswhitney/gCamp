@@ -50,13 +50,10 @@
   </thead>
 
   <tbody>
-    <% current_user.projects.each do |project| %>
+    <% @tracker_projects.each do |project| %>
     <tr>
       <td>
-        <%= link_to project.name, project_path(project) %>
-      </td>
-      <td>
-        <%= link_to 'edit', edit_project_path(project), :class => 'pull-right' %>
+        <%= link_to project[:name], project_path(project) %>
       </td>
     </tr>
     <% end %>
