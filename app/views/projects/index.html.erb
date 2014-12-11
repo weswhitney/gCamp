@@ -53,7 +53,7 @@
     <% @tracker_projects.each do |project| %>
     <tr>
       <td>
-        <%= link_to project[:name], project_path(project) %>
+        <%= link_to project[:name], tracker_projects_path %>
       </td>
     </tr>
     <% end %>
