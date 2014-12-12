@@ -1,0 +1,50 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to '(showing first 500)', :class => "btn btn-info" %>
+  </div>
+  <h1>Stories for gCamp</h1>
+</div>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        Story
+      </th>
+      <th>
+        Estimate
+      </th>
+      <th>
+        Labels
+      </th>
+      <th>
+        Current State
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tracker_stories.each do |story| %>
+    <tr>
+      <td>
+        <%= link_to story[:name] %>
+      </td>
+      <td>
+        <%= story[:estimate] %>
+      </td>
+      <td>
+        <% @labels = [] %>
+        <% story[:labels].each do |label| %>
+        <% "#{@labels << label[:name]}" %>
+        <% end %>
+        <%= @labels.join(', ') %>
+      </td>
+      <td>
+        <%= story[:current_state] %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
