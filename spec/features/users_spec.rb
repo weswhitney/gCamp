@@ -8,7 +8,8 @@ feature "Users" do
     email: "joe@email.com",
     password: "1234",
     first_name: "Joe",
-    last_name: "Guy"
+    last_name: "Guy",
+    pivotal_tracker_token: "123xyz"
     )
 
 
@@ -28,6 +29,7 @@ feature "Users" do
     fill_in "Email", with: "jobe@example.com"
     fill_in "Password", with: "pass"
     fill_in "Password confirmation", with: "pass"
+    fill_in "Pivotal Tracker Token", with: "123xyz"
     click_on "Create User"
 
     expect(page).to have_content("User was successfully created")

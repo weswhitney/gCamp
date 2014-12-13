@@ -50,9 +50,8 @@ feature "Projects" do
     role: 'owner'
     )
 
-
     visit "/projects"
-    within '.table' do
+    within('.table', match: :first) do
       click_on"Awesome"
     end
     expect(page).to have_content("Awesome")

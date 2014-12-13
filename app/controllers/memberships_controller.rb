@@ -7,8 +7,8 @@ class MembershipsController < ApplicationController
   end
 
   def index
-    @memberships = Membership.all
-    @membership = Membership.new
+    @memberships = @project.memberships.all
+    @membership = @project.memberships.new
   end
 
   def create
