@@ -12,7 +12,7 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    @membership = @project.memberships.new(params.require(:membership).permit(:role, :project_id, :user_id))
+    @membership = @project.memberships.new(membership_params)
     if @membership.save
     redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was added successfully"
     else
@@ -22,7 +22,7 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params[:id])
-    @membership.update(params.require(:membership).permit(:role, :project_id, :user_id))
+    @membership.update(membership_params)
     redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was updated successfully"
 
   end
@@ -31,6 +31,12 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     @membership.destroy
     redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was removed successfully"
+  end
+
+  private
+
+  def membership_params
+    params.require(:membership).permit(:role, :project_id, :user_id)
   end
 
 end
