@@ -1,10 +1,13 @@
 class MembershipsController < ApplicationController
-
-  before_action :ensure_current_user
-
   before_action do
     @project = Project.find(params[:project_id])
   end
+
+  before_action :require_login
+  before_action :ensure_project_member, except: [:index]
+  # before_action :authorize_membership
+  # before_action :authorize_owner, only: [:new, :create, :edit, :update]
+
 
   def index
     @memberships = @project.memberships.all
@@ -14,9 +17,9 @@ class MembershipsController < ApplicationController
   def create
     @membership = @project.memberships.new(membership_params)
     if @membership.save
-    redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was added successfully"
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was added successfully"
     else
-    render :index
+      render :index
     end
   end
 
@@ -35,6 +38,28 @@ class MembershipsController < ApplicationController
 
   private
 
+  def ensure_project_member
+    if current_user.memberships.where(project_id: @project.id).present?
+      true
+    else
+      raise AccessDenied
+    end
+  end
+  # def authorize_membership
+  #   if current_user.memberships.where(project_id: @project).present?
+  #     true
+  #   else
+  #     raise AccessDenied
+  #   end
+  # end
+
+  # def authorize_owner
+  #   @project = Project.find(params[:project_id])
+  #   unless current_user.is_owner?(@project)
+  #     raise AccessDenied
+  #   end
+  # end
+  #
   def membership_params
     params.require(:membership).permit(:role, :project_id, :user_id)
   end

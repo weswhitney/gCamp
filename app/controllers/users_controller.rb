@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :ensure_current_user
+  before_action :require_login
 
   def index
     @users = User.all

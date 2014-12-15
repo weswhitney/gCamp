@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  before_action :ensure_current_user
+  before_action :require_login
   # before_action :task_membership_match, only: [:edit]
   before_action do
     @project = Project.find(params[:project_id])
