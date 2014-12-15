@@ -4,7 +4,8 @@ class MembershipsController < ApplicationController
   end
 
   before_action :require_login
-  before_action :ensure_project_member, except: [:index]
+  before_action :set_membership, only: [:update, :destroy]
+
   # before_action :authorize_membership
   # before_action :authorize_owner, only: [:new, :create, :edit, :update]
 
@@ -37,6 +38,11 @@ class MembershipsController < ApplicationController
   end
 
   private
+
+
+  def set_membership
+    @membership = @project.memberships.find(params[:id])
+  end
 
   def ensure_project_member
     if current_user.memberships.where(project_id: @project.id).present?

@@ -1,16 +1,12 @@
 class TasksController < ApplicationController
-
-  before_action :require_login
-  # before_action :task_membership_match, only: [:edit]
   before_action do
     @project = Project.find(params[:project_id])
   end
 
-  before_action do
-    unless current_user.memberships.where(project_id: @project.id).present?
-      render file: 'public/404.html', status: :not_found, layout: false
-    end
-  end
+  before_action :require_login
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  # before_action :task_membership_match, only: [:edit]
+
 
 
   def index
@@ -57,5 +53,11 @@ class TasksController < ApplicationController
     @task = @project.tasks.find(params[:id])
     @task.destroy
     redirect_to project_tasks_path, notice: 'Task was successfully destroyed.'
+  end
+
+  private
+
+  def set_task
+    @task = @project.tasks.find(params[:id])
   end
 end

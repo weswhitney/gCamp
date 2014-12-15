@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_login
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -19,7 +20,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token))
+    @user = User.new(params.require(:user).permit(
+    :first_name,
+    :last_name,
+    :email,
+    :password,
+    :password_confirmation,
+    :pivotal_tracker_token,
+    :admin
+    ))
     if @user.save
       redirect_to users_path, notice: 'User was successfully created.'
     else
@@ -29,7 +38,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token))
+    if @user.update(params.require(:user).permit(:first_name,
+      :last_name,
+      :email,
+      :password,
+      :password_confirmation,
+      :pivotal_tracker_token,
+      :admin
+      ))
       redirect_to users_path, notice: 'User was successfully updated.'
     else
       render :edit
@@ -40,5 +56,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to root_path, notice: 'User was successfully deleted'
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
