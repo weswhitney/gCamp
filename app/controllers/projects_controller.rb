@@ -1,7 +1,21 @@
 class ProjectsController < ApplicationController
 
   before_action :require_login
-  before_action :set_project, only: [:show, :edit, :destroy, :update]
+  before_action :only => [:show] do
+    set_project
+    if current_user.admin || @project.users.include?(current_user)
+    else
+      raise AccessDenied
+    end
+  end
+
+  before_action :only => [:edit, :update, :destroy] do
+    set_project
+    if current_user.admin || owner?(@project, current_user)
+    else
+      raise AccessDenied
+    end
+  end
 
   def index
     @projects = Project.all
@@ -52,6 +66,18 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def owner?(project, current_user)
+    #project.memberships.where(user_id: current_user.id, role: 'owner').count > 0
+
+    result = false
+    project.memberships.each do |membership|
+      if membership.role == "owner" && current_user.id == membership.user_id
+        result = true
+      end
+    end
+    result
+  end
 
   def set_project
     @project = Project.find(params[:id])

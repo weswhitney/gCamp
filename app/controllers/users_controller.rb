@@ -1,10 +1,24 @@
 class UsersController < ApplicationController
 
   before_action :require_login
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :only => [:edit, :update, :destroy] do
+    set_user
+    if current_user.admin || @user == current_user
+    else
+      raise AccessDenied
+    end
+  end
 
   def index
+    if current_user.admin
     @users = User.all
+  else
+    @users = []
+    current_user.projects.each do |project|
+      @users += project.users
+    end
+    @users = @users.uniq
+  end
   end
 
   def show
@@ -16,19 +30,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    set_user
   end
 
   def create
-    @user = User.new(params.require(:user).permit(
-    :first_name,
-    :last_name,
-    :email,
-    :password,
-    :password_confirmation,
-    :pivotal_tracker_token,
-    :admin
-    ))
+    @user = User.new(user_params)
     if @user.save
       redirect_to users_path, notice: 'User was successfully created.'
     else
@@ -38,14 +44,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(params.require(:user).permit(:first_name,
-      :last_name,
-      :email,
-      :password,
-      :password_confirmation,
-      :pivotal_tracker_token,
-      :admin
-      ))
+    if @user.update(user_params)
       redirect_to users_path, notice: 'User was successfully updated.'
     else
       render :edit
@@ -59,6 +58,14 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+    if current_user.admin
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token, :admin)
+    else
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pivotal_tracker_token, :admin)
+    end
+  end
 
   def set_user
     @user = User.find(params[:id])

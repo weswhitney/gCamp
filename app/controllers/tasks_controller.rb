@@ -4,10 +4,14 @@ class TasksController < ApplicationController
   end
 
   before_action :require_login
+
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-  # before_action :task_membership_match, only: [:edit]
-
-
+  before_action do
+    if current_user.admin || @project.users.include?(current_user)
+    else
+      raise AccessDenied
+    end
+  end
 
   def index
     if params[:show_by] == "all"
