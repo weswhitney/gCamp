@@ -4,11 +4,29 @@ class MembershipsController < ApplicationController
   end
 
   before_action :require_login
-  before_action :set_membership, only: [:update, :destroy]
 
-  # before_action :authorize_membership
-  # before_action :authorize_owner, only: [:new, :create, :edit, :update]
+  before_action(:only => [:index]) do
+    
+    project_member = false
 
+    @project.memberships.each do |membership|
+      if membership.user_id == current_user.id
+        project_member = true
+      end
+    end
+
+    unless current_user.admin || project_member
+      raise AccessDenied
+    end
+  end
+
+  before_action :only => [:edit, :update, :destroy] do
+    set_membership
+    if current_user.admin || owner?(@project, current_user)
+    else
+      raise AccessDenied
+    end
+  end
 
   def index
     @memberships = @project.memberships.all
@@ -51,21 +69,7 @@ class MembershipsController < ApplicationController
       raise AccessDenied
     end
   end
-  # def authorize_membership
-  #   if current_user.memberships.where(project_id: @project).present?
-  #     true
-  #   else
-  #     raise AccessDenied
-  #   end
-  # end
 
-  # def authorize_owner
-  #   @project = Project.find(params[:project_id])
-  #   unless current_user.is_owner?(@project)
-  #     raise AccessDenied
-  #   end
-  # end
-  #
   def membership_params
     params.require(:membership).permit(:role, :project_id, :user_id)
   end

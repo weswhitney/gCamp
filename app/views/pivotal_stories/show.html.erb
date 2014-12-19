@@ -28,17 +28,18 @@
     <% @tracker_stories.each do |story| %>
     <tr>
       <td>
-        <%= link_to story[:name] %>
+        <%= link_to story[:name], story[:url] %>
       </td>
       <td>
         <%= story[:estimate] %>
       </td>
       <td>
-        <% @labels = [] %>
-        <% story[:labels].each do |label| %>
-        <% "#{@labels << label[:name]}" %>
+        <% story[:labels].each_with_index do |label, index| %>
+           <%= label[:name] %>
+           <% if index < story[:labels].length - 1 %>
+             ,
+           <% end %>
         <% end %>
-        <%= @labels.join(', ') %>
       </td>
       <td>
         <%= story[:current_state] %>
