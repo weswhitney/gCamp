@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_login
-  before_action :only => [:show, :edit, :update, :destroy] do
+  before_action :only => [:edit, :update, :destroy] do
     set_user
     if current_user.admin || @user == current_user
     else
