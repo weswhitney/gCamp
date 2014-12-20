@@ -17,6 +17,7 @@
   <%#= "#{@user.pivotal_tracker_token[0..3]} #{@user.pivotal_tracker_token.from(4).gsub(/./,"*")}" %>
 </p>
 <br>
-
+<% if current_user == @user %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>
