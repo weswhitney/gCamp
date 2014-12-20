@@ -15,7 +15,7 @@
 <p>
   <strong>Pivotal Token Tracker:</strong>
   <% if @user == current_user || current_user.admin %>
-    <%="#{@user.pivotal_tracker_token[0..3]} #{@user.pivotal_tracker_token.from(4).gsub(/./,"*")}" %>
+    <%= "#{@user.pivotal_tracker_token[0..3]} #{@user.pivotal_tracker_token.from(4).gsub(/./,"*")}" %>
   <% end %>
 </p>
 <br>
