@@ -2,9 +2,7 @@ class TasksController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
-
-  before_action :require_login
-
+  before_action :authorize_member
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action do
     if current_user.admin || @project.users.include?(current_user)

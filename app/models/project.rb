@@ -8,4 +8,11 @@ class Project < ActiveRecord::Base
 
   has_many :users, through: :memberships
 
+  def owner?(project)
+    admin? || memberships.where(project_id: project.id, role:"owner").present?
+  end
+
+  def member?(project)
+    projects.include?(project)
+  end
 end

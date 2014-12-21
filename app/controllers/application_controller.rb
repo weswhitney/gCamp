@@ -26,6 +26,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_owner
+    current_user.owner?(@project)
+  end
+
+  def authorize_member
+    current_user.member?(@project)
+  end
+
+  helper_method :require_login
+
   # def task_membership_match
   #   if current_user.memberships.where(project_id: @project.id).present?
   #     true

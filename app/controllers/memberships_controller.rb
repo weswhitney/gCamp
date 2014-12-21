@@ -1,33 +1,11 @@
 class MembershipsController < ApplicationController
+  before_action :authorize_owner, only: [:update]
   before_action do
     @project = Project.find(params[:project_id])
   end
 
-  before_action :require_login
-
-  before_action(:only => [:index]) do
-    
-    project_member = false
-
-    @project.memberships.each do |membership|
-      if membership.user_id == current_user.id
-        project_member = true
-      end
-    end
-
-    unless current_user.admin || project_member
-      raise AccessDenied
-    end
-  end
-
-  before_action :only => [:edit, :update, :destroy] do
-    set_membership
-    if current_user.admin || owner?(@project, current_user)
-    else
-      raise AccessDenied
-    end
-  end
-
+  before_action :authorize_member
+  
   def index
     @memberships = @project.memberships.all
     @membership = @project.memberships.new

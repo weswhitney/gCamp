@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
+  before_action :authorize_owner, only: [:edit, :update, :destroy]
+  before_action :authorize_member
 
-  before_action :require_login
   before_action :only => [:show] do
     set_project
     if current_user.admin || @project.users.include?(current_user)
@@ -11,7 +12,7 @@ class ProjectsController < ApplicationController
 
   before_action :only => [:edit, :update, :destroy] do
     set_project
-    if current_user.admin || owner?(@project, current_user)
+    if current_user.admin || is_owner?(@project, current_user)
     else
       raise AccessDenied
     end
@@ -66,18 +67,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-  def owner?(project, current_user)
-    project.memberships.where(user_id: current_user.id, role: 'owner').count > 0
-
-    result = false
-    project.memberships.each do |membership|
-      if membership.role == "owner" && current_user.id == membership.user_id
-        result = true
-      end
-    end
-    result
-  end
 
   def set_project
     @project = Project.find(params[:id])

@@ -12,4 +12,8 @@ class Task < ActiveRecord::Base
   belongs_to :project
   has_many :comments, dependent: :destroy
 
+  def member?(project)
+    projects.include?(project)
+  end
+
 end

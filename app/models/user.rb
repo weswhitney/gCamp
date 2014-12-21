@@ -12,8 +12,12 @@ class User < ActiveRecord::Base
     self.first_name + ' ' + self.last_name
   end
 
-  # def is_owner?(project)
-  #   project.memberships.where(role: 'Owner', user_id: id).present?
-  # end
+  def owner?(project)
+    admin? || memberships.where(project_id: project.id, role:"owner").present?
+  end
+
+  def member?(project)
+    projects.include?(project)
+  end
 
 end
