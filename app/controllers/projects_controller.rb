@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
   private
 
   def owner?(project, current_user)
-    #project.memberships.where(user_id: current_user.id, role: 'owner').count > 0
+    project.memberships.where(user_id: current_user.id, role: 'owner').count > 0
 
     result = false
     project.memberships.each do |membership|

@@ -14,12 +14,16 @@
 </p>
 <p>
   <strong>Pivotal Token Tracker:</strong>
-  <% if @user == current_user || current_user.admin %>
-    <%= "#{@user.pivotal_tracker_token[0..3]} #{@user.pivotal_tracker_token.from(4).gsub(/./,"*")}" %>
+  <% if @user.pivotal_tracker_token == nil %>
+  <%= "" %>
+  <% elsif @user.pivotal_tracker_token.length < 4 %>
+  <%= "" %>
+  <% else %>
+  <%= "#{@user.pivotal_tracker_token[0..3]} #{@user.pivotal_tracker_token.from(4).gsub(/./,"*")}" %>
   <% end %>
 </p>
 <br>
 <% if @user == current_user || current_user.admin %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
-<%= link_to 'Back', users_path %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <% end %>
+  <%= link_to 'Back', users_path %>
