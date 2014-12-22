@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
     render "public/404", status: 404, layout: false
   end
 
-
   def current_user
     User.find_by(id: session[:user_id])
   end
@@ -35,15 +34,6 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :require_login
-
-  # def task_membership_match
-  #   if current_user.memberships.where(project_id: @project.id).present?
-  #     true
-  #   else
-  #     render file: 'public/404.html', status: :not_found, layout: false
-  #   end
-  # end
-
 
   helper_method :current_user
 

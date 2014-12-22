@@ -17,7 +17,7 @@
 </div>
 
 <!-- form -->
-<%# if current_user.is_owner?(@project) %>
+<% if current_user.owner?(@project) %>
 <div class="well form-inline">
   <%= form_for [@project, @membership] do |f| %>
 
@@ -41,11 +41,8 @@
   <%= f.submit "Add New Member", class: "btn btn-primary" %>
 
   <% end %>
-  <%# end %>
 </div>
 
-
-<%# if current_user.is_owner?(@project) %>
 <table>
   <tr>
     <% @project.users.each do |user| %>
@@ -75,5 +72,23 @@
     <% end %>
   </tr>
   <% end %>
-  <%# end %>
 </table>
+  <% elsif %>
+  <table>
+
+  <tbody>
+    <% @project.users.each do |user| %>
+    <% user.memberships.where(project_id: @project.id).each do |membership| %>
+    <tr>
+      <td class="col-md-3">
+        <%= link_to user.full_name, user_path(user) %>
+      </td>
+      <td>
+        <%= membership.role %>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+    <% end %>
+  </tbody>
+  </table>
