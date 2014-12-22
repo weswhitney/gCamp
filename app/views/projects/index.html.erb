@@ -27,7 +27,9 @@
           <%= link_to project.tasks.count, project_tasks_path(project) %>
         </td>
         <td>
+          <% if current_user.owner?(project) %>
           <%= link_to 'edit', edit_project_path(project), :class => 'pull-right' %>
+          <% end %>
         </td>
       </tr>
       <% end %>
