@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
   end
   before_action :authorize_owner, only: [:update]
   before_action :authorize_member
-  
+
   def index
     @memberships = @project.memberships.all
     @membership = @project.memberships.new
@@ -32,6 +32,8 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     if @membership.destroy
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was removed successfully"
+    else
+      render :index
     end
   end
 
