@@ -10,9 +10,7 @@
 </p>
 <p>
   <strong>Email:</strong>
-  <% if @user == current_user || current_user.admin %>
   <%= mail_to @user.email %>
-  <% end %>
 </p>
 <p>
   <strong>Pivotal Token Tracker:</strong>
