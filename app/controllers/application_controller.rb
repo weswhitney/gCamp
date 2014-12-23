@@ -31,7 +31,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_member
-    current_user.member?(@project)
+    unless current_user.member?(@project)
+      raise AccessDenied
+    end
   end
 
   def redirect_to_previous_url_or_projects

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    if current_user.admin 
+    if current_user.admin
     @users = User.all
   else
     @users = []
