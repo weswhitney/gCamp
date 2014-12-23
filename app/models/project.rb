@@ -15,4 +15,5 @@ class Project < ActiveRecord::Base
   def member?(project)
     projects.include?(project)
   end
+
 end

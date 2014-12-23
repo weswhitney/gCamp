@@ -4,8 +4,7 @@ class MembershipsController < ApplicationController
   end
   before_action :authorize_owner, only: [:update]
   before_action :authorize_member
-
-
+  
   def index
     @memberships = @project.memberships.all
     @membership = @project.memberships.new
@@ -23,16 +22,17 @@ class MembershipsController < ApplicationController
   def update
     @membership = Membership.find(params[:id])
     if @membership.update(membership_params)
-    redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was updated successfully"
-  else
-    render :edit
-  end
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was updated successfully"
+    else
+      render :edit
+    end
   end
 
   def destroy
     @membership = Membership.find(params[:id])
-    @membership.destroy
-    redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was removed successfully"
+    if @membership.destroy
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was removed successfully"
+    end
   end
 
   private

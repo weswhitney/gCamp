@@ -16,11 +16,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    User.find_by(id: session[:user_id])
+      User.find_by(id: session[:user_id])
   end
 
   def require_login
     unless current_user
+      session[:first_url] = request.url if request.get?
       redirect_to signin_path, notice: "You must be logged in to access that action"
     end
   end
@@ -33,8 +34,15 @@ class ApplicationController < ActionController::Base
     current_user.member?(@project)
   end
 
+  def redirect_to_previous_url_or_projects
+    redirect_to (session[:first_url] || projects_path)
+    session.delete(:first_url)
+  end
+
   helper_method :require_login
 
   helper_method :current_user
+
+
 
 end
