@@ -13,7 +13,6 @@ class Membership < ActiveRecord::Base
 
   def ensure_not_last_owner
     if role == 'owner' && project.memberships.where(:role => 'owner').count <= 1
-      #not allowed to delete
       errors.add(:user, "cannot be removed as they are the last owner of the project")
       return false
     end

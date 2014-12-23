@@ -44,13 +44,13 @@ class MembershipsController < ApplicationController
     @membership = @project.memberships.find(params[:id])
   end
 
-  def ensure_project_member
-    if current_user.memberships.where(project_id: @project.id).present?
-      true
-    else
-      raise AccessDenied
-    end
-  end
+  # def ensure_project_member
+  #   if current_user.memberships.where(project_id: @project.id).present?
+  #     true
+  #   else
+  #     raise AccessDenied
+  #   end
+  # end
 
   def membership_params
     params.require(:membership).permit(:role, :project_id, :user_id)
