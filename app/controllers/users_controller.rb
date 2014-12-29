@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorize_member, :only => [:index, :show]
+  before_action :authorize_member, :only => [:show]
   before_action :only => [:edit, :update, :destroy] do
     set_user
     if current_user.admin || @user == current_user
