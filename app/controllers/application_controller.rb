@@ -32,7 +32,6 @@ class ApplicationController < ActionController::Base
 
   def authorize_member
     unless current_user.member?(@project)
-      raise AccessDenied
     end
   end
 

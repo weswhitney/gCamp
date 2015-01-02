@@ -4,12 +4,12 @@ feature "Users" do
 
   before do
     User.delete_all
-    User.create!(
+    user = User.create!(
     email: "joe@email.com",
     password: "1234",
     first_name: "Joe",
     last_name: "Guy",
-    pivotal_tracker_token: "123xyz"
+    pivotal_tracker_token: ""
     )
 
 
@@ -44,10 +44,11 @@ feature "Users" do
 
   end
 
-  scenario "User edits a user" do
+    scenario "User edits a user" do
 
     visit "/users"
-    click_on "edit"
+    click_on "Joe Guy"
+    click_on "Edit"
     fill_in "First name", with: "Gob"
     click_on "Update User"
 
