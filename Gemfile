@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-  gem "pg"
+gem "pg"
 
-  gem "faraday"
+gem "faraday"
 
 group :production do
   gem "rails_12factor"
