@@ -1,61 +1,74 @@
-# def create_user
-#   @user = User.create!(
-#   email: "joe@email.com",
-#   password: "1234",
-#   first_name: "Joe",
-#   last_name: "Guy"
-#   )
-# end
-#
-# def create_membership(project)
-#   Membership.create(
-#   project: project,
-#   user: @user,
-#   role: 'owner'
-#   )
-# end
-#
-# def create_project
-# project = Project.create!(
-# name: "Awesome"
-# )
-# end
-
-
-def create_project
-  Project.create!(name: "#{Faker::Hacker.ingverb.humanize} #{Faker::Hacker.noun.humanize}")
+def create_admin
+  User.create!(
+    first_name: "Test",
+    last_name: "Admin",
+    email: "admin@test.com",
+    password: "password",
+    password_confirmation: "password",
+    admin: true,
+  )
 end
 
-# def create_task(options = {})
-#   project = options[:project] || create_project
-#   Task.create!(description: Faker::Lorem.sentence,
-#   due_date: Faker::Time.forward(24),
-#   complete: false,
-#   project_id: http://project.id,)
-# end
-#
-# def create_user
-#   User.create!(
-#   first_name: Faker::Name.first_name,
-#   last_name: Faker::Name.last_name,
-#   email: Faker::Internet.email,
-#   password: Faker::Internet.password,)
-# end
-#
-# def create_membership(options = {})
-#   project = options[:project] || create_project
-#   user = options[:user] || create_user
-#   Membership.create!(
-#   role: "Member",
-#   project_id: http://project.id,
-#   user_id: http://user.id,)
-# end
-#
-# def log_user_in(options = {})
-#   user = options[:user] || create_user
-#   visit root_path
-#   click_on "Sign In"
-#   fill_in "email", with: user.email
-#   fill_in "password", with: user.password
-#   click_on "Sign in"
-# end
+def create_user
+  User.create!(
+    first_name: "Test",
+    last_name: "User",
+    email: "test@test.com",
+    password: "password",
+    password_confirmation: "password",
+  )
+end
+
+def create_user2
+  User.create!(
+  first_name: "Test2",
+  last_name: "User",
+  email: "test2@test.com",
+  password: "password",
+  password_confirmation: "password",
+  )
+end
+
+def create_project
+  Project.create!(
+    name: "Test Project",
+  )
+end
+
+def create_project2
+  Project.create!(
+  name: "Test Project 2",
+  )
+end
+
+def create_owner(user, project)
+  Membership.create!(
+    role: "owner",
+    user_id: user.id,
+    project_id: project.id,
+  )
+end
+
+def create_member(user, project)
+  Membership.create!(
+  role: "member",
+  user_id: user.id,
+  project_id: project.id,
+  )
+end
+
+def create_task(project)
+  Task.create!(
+  description: "Test Task",
+  project_id: project.id,
+  due: "01/01/2999"
+  )
+end
+
+def create_comment(user, task)
+  Comment.create!(
+    description: "Test Comment",
+    user_id: user.id,
+    task_id: task.id,
+  )
+end
