@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/weswhitney/gCamp.svg?branch=master)](https://travis-ci.org/weswhitney/gCamp)
 
-thawing-tundra-4075.herokuapp.com
 
 == README
 
