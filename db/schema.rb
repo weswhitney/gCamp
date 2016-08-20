@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20141217004221) do
   end
 
   create_table "memberships", force: true do |t|
-    t.string   "role"
-    t.integer  "project_id"
-    t.integer  "user_id"
+    t.string   "role",       null: false
+    t.integer  "project_id", null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 20141217004221) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
     t.string   "pivotal_tracker_token"
     t.boolean  "admin",                 default: false
   end
