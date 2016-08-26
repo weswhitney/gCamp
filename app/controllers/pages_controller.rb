@@ -21,15 +21,15 @@ class PagesController < PublicController
 
     faq1 = Faq.new
     faq1.question = "What is gCamp?"
-    faq1.answer = "gCamp is an awesome tool that will change your life."
+    faq1.answer = "gCamp is a class project from the galvanize full stack rails and javascript program."
 
     faq2 = Faq.new
     faq2.question = "How do I get join gCamp?"
-    faq2.answer = "Right now, gCamp is still in production."
+    faq2.answer = "You can join it and use it but it's more of an example app."
 
     faq3 = Faq.new
     faq3.question = "When will gCamp be finished?"
-    faq3.answer = "gCamp is a work in progress."
+    faq3.answer = "gCamp is an ongoing personal project."
 
     @faqs = [faq1, faq2, faq3]
   end
