@@ -9,35 +9,33 @@
         <th>Name</th>
         <th>Members</th>
         <th>Tasks</th>
-        <th>
-        </th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <% current_user.projects.each do |project| %>
-      <tr>
-        <td>
-          <%= link_to project.name, project_path(project) %>
-        </td>
-        <td>
-          <%= link_to project.memberships.count, project_memberships_path(project) %>
-        </td>
-        <td>
-          <%= link_to project.tasks.count, project_tasks_path(project) %>
-        </td>
-        <td>
-          <% if current_user.owner?(project) %>
-          <%= link_to 'edit', edit_project_path(project), :class => 'pull-right' %>
-          <% end %>
-        </td>
-      </tr>
+          <tr>
+            <td>
+              <%= link_to project.name, project_path(project) %>
+            </td>
+            <td>
+              <%= link_to project.memberships.count, project_memberships_path(project) %>
+            </td>
+            <td>
+              <%= link_to project.tasks.count, project_tasks_path(project) %>
+            </td>
+            <td>
+              <% if current_user.owner?(project) %>
+              <%= link_to 'edit', edit_project_path(project), :class => 'pull-right' %>
+              <% end %>
+            </td>
+          </tr>
       <% end %>
     </tbody>
   </table>
 
   <h1>Pivotal Tracker Projects</h1>
-
 
   <table class="table">
     <thead>
